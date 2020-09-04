@@ -1,9 +1,12 @@
 package com.cy.service.support.processor;
 
 import com.cy.service.support.core.BaseProcessor;
+import com.cy.service.support.core.IHandler;
 import com.cy.service.support.handler.RequestCheckHandler;
 import com.cy.service.support.handler.TokenCheckHandler;
 import org.springframework.stereotype.Service;
+
+import java.util.Iterator;
 
 /**
  * @Description:
@@ -28,6 +31,13 @@ public class RequestCheckProcessor extends BaseProcessor {
 
     @Override
     public void process() {
-
+        Iterator iterator = this.iterator();
+        while (iterator.hasNext()) {
+            IHandler handler = (IHandler) iterator.next();
+            if (handler.executeFlag()) {
+                handler.execute();
+            }
+        }
+        this.processSuccessor();
     }
 }

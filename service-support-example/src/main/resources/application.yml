@@ -1,4 +1,4 @@
 # Logger Config
 logging:
   level:
-    com.cy.service.support: debug
+    com.cy.service: debug

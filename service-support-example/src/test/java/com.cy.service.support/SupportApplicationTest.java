@@ -49,11 +49,11 @@ public class SupportApplicationTest {
             contextHolder.bindResponse("response");
 
             //step 3 return response
-            LOGGER.info("response :{}", contextHolder.getResponse());
+            LOGGER.info("response : {}", contextHolder.getResponse());
             
         } catch (Exception e) {
             Result result = new Result(e, ErrorCode.FAIL);
-            LOGGER.info("response :{}", result);
+            LOGGER.info("response : {}", result);
         } finally {
             //step 4 ThreadLocal contextHolder clear
             contextHolder.clear();
