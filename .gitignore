@@ -1,0 +1,20 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+
+*.iml
+.idea/
+target/
+Logs/
+bin/
+*.class
+metircs-client-all.log
+
+# Eclipse project files
+/target/
+.classpath
+.project
+.DS_Store
+.settings
+*.MF
+/.metadata
+.concrete
