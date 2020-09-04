@@ -1,6 +1,7 @@
 package com.cy.service.support;
 
 import com.cy.service.support.holder.ContextHolder;
+import com.cy.service.support.processor.RequestCheckProcessor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +26,39 @@ public class SupportApplicationTest {
     private ContextHolder contextHolder;
 
     @Test
-    public void test() {
+    public void contextHolder() {
         Assert.assertNotNull("ContextHolder is null", contextHolder);
         contextHolder.bindRequest("test");
         LOGGER.info("request:{}", contextHolder.getRequest());
     }
+
+
+    @Autowired
+    private RequestCheckProcessor requestCheckProcessor;
+
+    @Test
+    public void processor() {
+        Assert.assertNotNull("RequestCheckProcessor is null", requestCheckProcessor);
+
+        try {
+            //step 1 bind request
+            contextHolder.bindRequest("request");
+
+            //step 2 set contextHolder.bindResponse sucess before the end 
+            requestCheckProcessor.getProcessor().process();
+            contextHolder.bindResponse("response");
+
+            //step 3 return response
+            LOGGER.info("response :{}", contextHolder.getResponse());
+            
+        } catch (Exception e) {
+            Result result = new Result(e, ErrorCode.FAIL);
+            LOGGER.info("response :{}", result);
+        } finally {
+            //step 4 ThreadLocal contextHolder clear
+            contextHolder.clear();
+        }
+    }
+
 
 }
