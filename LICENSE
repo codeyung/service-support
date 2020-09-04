@@ -203,7 +203,7 @@ keep intact all notices of the absence of any warranty; and give all
 recipients a copy of this License along with the Program.
 
   You may charge any price or no price for each copy that you convey,
-and you may offer support or warranty protection for a fee.
+and you may offer com.cy.service.support or warranty protection for a fee.
 
   5. Conveying Modified Source Versions.
 
@@ -257,7 +257,7 @@ in one of these ways:
     b) Convey the object code in, or embodied in, a physical product
     (including a physical distribution medium), accompanied by a
     written offer, valid for at least three years and valid for as
-    long as you offer spare parts or customer support for that product
+    long as you offer spare parts or customer com.cy.service.support for that product
     model, to give anyone who possesses the object code either (1) a
     copy of the Corresponding Source for all the software in the
     product that is covered by this License, on a durable physical
@@ -300,7 +300,7 @@ or household purposes, or (2) anything designed or sold for incorporation
 into a dwelling.  In determining whether a product is a consumer product,
 doubtful cases shall be resolved in favor of coverage.  For a particular
 product received by a particular user, "normally used" refers to a
-typical or common use of that class of product, regardless of the status
+typical or com.cy.service.common use of that class of product, regardless of the status
 of the particular user or of the way in which the particular user
 actually uses, or expects or is expected to use, the product.  A product
 is a consumer product regardless of whether the product has substantial
@@ -327,7 +327,7 @@ modified object code on the User Product (for example, the work has
 been installed in ROM).
 
   The requirement to provide Installation Information does not include a
-requirement to continue to provide support service, warranty, or updates
+requirement to continue to provide com.cy.service.support service, warranty, or updates
 for a work that has been modified or installed by the recipient, or for
 the User Product in which it has been modified or installed.  Access to a
 network may be denied when the modification itself materially and

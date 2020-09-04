@@ -1,4 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
+# Created by .ignore com.cy.service.support plugin (hsz.mobi)
 
 
 *.iml
@@ -8,13 +8,3 @@ Logs/
 bin/
 *.class
 metircs-client-all.log
-
-# Eclipse project files
-/target/
-.classpath
-.project
-.DS_Store
-.settings
-*.MF
-/.metadata
-.concrete
