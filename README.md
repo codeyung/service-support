@@ -117,13 +117,13 @@ service-support-example|业务扩展支持示例
  
  ## 日志
  ```java
- 2020-09-04 21:45:25.858  INFO 9258 --- [           main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=request_param,value="request" binded.
- 2020-09-04 21:45:25.859 DEBUG 9258 --- [           main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] processor is com.cy.service.support.processor.RequestCheckProcessor.
- 2020-09-04 21:45:25.860 DEBUG 9258 --- [           main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.TokenCheckHandler.
- 2020-09-04 21:45:25.860  INFO 9258 --- [           main] c.c.s.support.handler.TokenCheckHandler  : TokenCheckHandler-execute
- 2020-09-04 21:45:25.860 DEBUG 9258 --- [           main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.RequestCheckHandler.
- 2020-09-04 21:45:25.860  INFO 9258 --- [           main] c.c.s.s.handler.RequestCheckHandler      : RequestCheckHandler-execute
- 2020-09-04 21:45:25.861  INFO 9258 --- [           main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=terminate,value=null getted.
- 2020-09-04 21:45:25.862  INFO 9258 --- [           main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=response_param,value="response" binded.
- 2020-09-04 21:45:25.862  INFO 9258 --- [           main] c.c.s.support.SupportApplicationTest     : response : response
+ 2020-09-05 21:45:25.858  INFO 9258 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=request_param,value="request" binded.
+ 2020-09-05 21:45:25.859 DEBUG 9258 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] processor is com.cy.service.support.processor.RequestCheckProcessor.
+ 2020-09-05 21:45:25.860 DEBUG 9258 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.TokenCheckHandler.
+ 2020-09-05 21:45:25.860  INFO 9258 --- [main] c.c.s.support.handler.TokenCheckHandler  : TokenCheckHandler-execute
+ 2020-09-05 21:45:25.860 DEBUG 9258 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.RequestCheckHandler.
+ 2020-09-05 21:45:25.860  INFO 9258 --- [main] c.c.s.s.handler.RequestCheckHandler      : RequestCheckHandler-execute
+ 2020-09-05 21:45:25.861  INFO 9258 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=terminate,value=null getted.
+ 2020-09-05 21:45:25.862  INFO 9258 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=response_param,value="response" binded.
+ 2020-09-05 21:45:25.862  INFO 9258 --- [main] c.c.s.support.SupportApplicationTest     : response : response
  ```
