@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @Description:
  * @Author: YongJingChuan
- * @Date: 2020/8/22 15:49
+ * @Date: 2020/9/5 15:49
  */
 public class Result<T> implements Serializable {
 

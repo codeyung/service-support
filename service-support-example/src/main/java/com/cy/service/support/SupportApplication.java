@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 /**
  * @Description:
  * @Author: YongJingChuan
- * @Date: 2020/8/20 14:20
+ * @Date: 2020/9/5 14:20
  */
 @SpringBootApplication
 @ImportResource(locations = {"classpath:spring/spring-*.xml"})

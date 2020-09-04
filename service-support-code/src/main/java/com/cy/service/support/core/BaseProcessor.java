@@ -13,7 +13,7 @@ import java.util.LinkedList;
 /**
  * @Description:处理器基类
  * @Author: YongJingChuan
- * @Date: 2020/8/22 13:56
+ * @Date: 2020/9/5 13:56
  */
 public abstract class BaseProcessor<T> implements IProcessor, Iterable {
 
