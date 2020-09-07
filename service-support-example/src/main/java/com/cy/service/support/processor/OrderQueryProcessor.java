@@ -2,8 +2,7 @@ package com.cy.service.support.processor;
 
 import com.cy.service.support.core.BaseProcessor;
 import com.cy.service.support.core.IHandler;
-import com.cy.service.support.handler.RequestCheckHandler;
-import com.cy.service.support.handler.TokenCheckHandler;
+import com.cy.service.support.handler.OrderQueryHandler;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
@@ -14,15 +13,13 @@ import java.util.Iterator;
  * @Date: 2020/9/5 18:06
  */
 @Service
-public class RequestCheckProcessor extends BaseProcessor {
+public class OrderQueryProcessor extends BaseProcessor {
 
 
-    public RequestCheckProcessor(OrderQueryProcessor orderQueryProcessor, TokenCheckHandler tokenCheckHandler,
-                                 RequestCheckHandler requestCheckHandler) {
+    public OrderQueryProcessor(OrderQueryHandler orderQueryHandler) {
         this.setProcessor(this);
-        this.setSuccessor(orderQueryProcessor);
-        this.append(tokenCheckHandler);
-        this.append(requestCheckHandler);
+        this.setSuccessor(null);
+        this.append(orderQueryHandler);
     }
 
     @Override

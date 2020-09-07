@@ -41,6 +41,20 @@ service-support-example|业务支持示例
       }
   }
   ```
+ ```java
+   //implements Handler
+  @Service
+  public class OrderQueryHandler implements IHandler {
+  
+  
+      private final static Logger LOGGER = LoggerFactory.getLogger(OrderQueryHandler.class);
+  
+      @Override
+      public void execute() {
+          LOGGER.info("OrderQueryHandler-execute");
+      }
+  }
+  ```
   
  ```java
   //register Processor extends BaseProcessor
@@ -48,11 +62,12 @@ service-support-example|业务支持示例
  @Service
  public class RequestCheckProcessor extends BaseProcessor {
  
- 
      //register handler chain
-     public RequestCheckProcessor(TokenCheckHandler tokenCheckHandler, RequestCheckHandler requestCheckHandler) {
+     public RequestCheckProcessor(OrderQueryProcessor orderQueryProcessor,
+     TokenCheckHandler tokenCheckHandler, RequestCheckHandler requestCheckHandler) {
          this.setProcessor(this);
-         this.setSuccessor(null);
+         //set next processor （successor processor）
+         this.setSuccessor(orderQueryProcessor);
          this.append(tokenCheckHandler);
          this.append(requestCheckHandler);
      }
@@ -76,6 +91,40 @@ service-support-example|业务支持示例
      }
  }
  ```
+ 
+  ```java
+   //register Processor extends BaseProcessor
+   
+  @Service
+  public class OrderQueryProcessor extends BaseProcessor {
+  
+      //register handler chain
+      public OrderQueryProcessor(OrderQueryHandler orderQueryHandler) {
+              this.setProcessor(this);
+              //set next processor （successor processor）
+              this.setSuccessor(null);
+              this.append(orderQueryHandler);
+      }
+  
+      @Override
+      public void configurate() {
+  
+      }
+  
+      //Override process method parallel or serial execute
+      @Override
+      public void process() {
+          Iterator iterator = this.iterator();
+          while (iterator.hasNext()) {
+              IHandler handler = (IHandler) iterator.next();
+              if (handler.executeFlag()) {
+                  handler.execute();
+              }
+          }
+          this.processSuccessor();
+      }
+  }
+  ```
  
  ```java
  public class SupportApplicationTest {
@@ -117,13 +166,17 @@ service-support-example|业务支持示例
  
  ## 日志
  ```java
- 2020-09-05 21:45:25.858  INFO 9258 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=request_param,value="request" binded.
- 2020-09-05 21:45:25.859 DEBUG 9258 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] processor is com.cy.service.support.processor.RequestCheckProcessor.
- 2020-09-05 21:45:25.860 DEBUG 9258 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.TokenCheckHandler.
- 2020-09-05 21:45:25.860  INFO 9258 --- [main] c.c.s.support.handler.TokenCheckHandler  : TokenCheckHandler-execute
- 2020-09-05 21:45:25.860 DEBUG 9258 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.RequestCheckHandler.
- 2020-09-05 21:45:25.860  INFO 9258 --- [main] c.c.s.s.handler.RequestCheckHandler      : RequestCheckHandler-execute
- 2020-09-05 21:45:25.861  INFO 9258 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=terminate,value=null getted.
- 2020-09-05 21:45:25.862  INFO 9258 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=response_param,value="response" binded.
- 2020-09-05 21:45:25.862  INFO 9258 --- [main] c.c.s.support.SupportApplicationTest     : response : response
+ 2020-09-05 10:01:13.868  INFO 14724 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=request_param,value="request" binded.
+ 2020-09-05 10:01:13.870 DEBUG 14724 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] processor is com.cy.service.support.processor.RequestCheckProcessor.
+ 2020-09-05 10:01:13.870 DEBUG 14724 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.TokenCheckHandler.
+ 2020-09-05 10:01:13.870  INFO 14724 --- [main] c.c.s.support.handler.TokenCheckHandler  : TokenCheckHandler-execute
+ 2020-09-05 10:01:13.871 DEBUG 14724 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.RequestCheckHandler.
+ 2020-09-05 10:01:13.871  INFO 14724 --- [main] c.c.s.s.handler.RequestCheckHandler      : RequestCheckHandler-execute
+ 2020-09-05 10:01:13.871  INFO 14724 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=terminate,value=null getted.
+ 2020-09-05 10:01:13.871 DEBUG 14724 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] successor is com.cy.service.support.processor.OrderQueryProcessor.
+ 2020-09-05 10:01:13.871 DEBUG 14724 --- [main] c.cy.service.support.core.BaseProcessor  : [BaseProcessor] handler is com.cy.service.support.handler.OrderQueryHandler.
+ 2020-09-05 10:01:13.871  INFO 14724 --- [main] c.c.s.support.handler.OrderQueryHandler  : OrderQueryHandler-execute
+ 2020-09-05 10:01:13.874  INFO 14724 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=terminate,value=null getted.
+ 2020-09-05 10:01:13.875  INFO 14724 --- [main] c.c.s.support.holder.ContextHolder       : [ContextHolder] key=response_param,value="response" binded.
+ 2020-09-05 10:01:13.875  INFO 14724 --- [main] c.c.s.support.SupportApplicationTest     : response : response
  ```
